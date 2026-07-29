@@ -1,3 +1,4 @@
+from backend.models import DocumentPage
 import fitz  # PyMuPDF
 from pathlib import Path
 
@@ -62,11 +63,11 @@ class PDFParser:
 
             if cleaned:
                 extracted_pages.append(
-                    {
-                        "page": page_number + 1,
-                        "text": cleaned,
-                        "source": pdf_path.name
-                    }
+                    DocumentPage(
+                        page=page_number + 1,
+                        text=cleaned,
+                        source=pdf_path.name
+                    )
                 )
 
         document.close()
